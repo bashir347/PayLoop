@@ -124,7 +124,14 @@ export default function ActivityPage() {
             disabled={loading}
             className="btn-ghost text-xs"
           >
-            {loading ? <Spinner /> : "Refresh"}
+            {loading ? (
+              <>
+                <Spinner />
+                <span className="sr-only">Loading…</span>
+              </>
+            ) : (
+              "Refresh"
+            )}
           </button>
         </div>
       </div>

@@ -134,7 +134,14 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Your invoices</h2>
         <button onClick={load} disabled={loading} className="btn-ghost text-xs">
-          {loading ? <Spinner /> : "Refresh"}
+          {loading ? (
+            <>
+              <Spinner />
+              <span className="sr-only">Loading…</span>
+            </>
+          ) : (
+            "Refresh"
+          )}
         </button>
       </div>
 

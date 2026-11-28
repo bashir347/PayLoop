@@ -110,7 +110,14 @@ export default function StatementPage() {
           />
         </div>
         <button onClick={scan.retry} disabled={scan.loading} className="btn-ghost text-xs">
-          {scan.loading ? <Spinner /> : "Refresh"}
+          {scan.loading ? (
+            <>
+              <Spinner />
+              <span className="sr-only">Loading…</span>
+            </>
+          ) : (
+            "Refresh"
+          )}
         </button>
         <button onClick={print} disabled={!canPrint} className="btn-primary ml-auto text-sm">
           Print / Save as PDF

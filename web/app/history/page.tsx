@@ -147,7 +147,14 @@ export default function HistoryPage() {
           disabled={loading}
           className="btn-ghost ml-auto text-xs"
         >
-          {loading ? <Spinner /> : "Refresh"}
+          {loading ? (
+            <>
+              <Spinner />
+              <span className="sr-only">Loading…</span>
+            </>
+          ) : (
+            "Refresh"
+          )}
         </button>
       </div>
 

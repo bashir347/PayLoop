@@ -64,6 +64,28 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Respect the user's reduced-motion preference (WCAG 2.1 SC 2.3.3).
+   We neutralise motion globally rather than sprinkling motion-reduce:
+   utilities on every animated element, because one rule catches the
+   Tailwind animate-spin / animate-pulse utilities, the smooth scroll
+   above, and decorative transitions (e.g. .btn hover) — and keeps
+   working for any animation added later. Durations are ~0.01ms rather
+   than 0 so animation/transition events still fire if code relies on
+   them; iteration-count is capped at 1 so nothing loops. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   @apply bg-page text-fg antialiased;
 }
